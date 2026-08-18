@@ -1,5 +1,9 @@
 <meta charset="utf-8">
 <title>Ratearr</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
 <link rel="alternate" hreflang="en" href="https://www.ratearr.com/">
 <link rel="alternate" hreflang="fr" href="https://www.ratearr.fr/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap">
@@ -69,6 +73,10 @@
   .topbar-brand {
     font-family: 'DM Serif Text', Georgia, serif; font-size: 20px;
     color: var(--ink); letter-spacing: -0.3px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .topbar-logo {
+    width: 28px; height: 28px; border-radius: 6px;
   }
   .topbar-links { display: flex; gap: 20px; font-size: 14px; }
   .topbar-links a {
@@ -77,15 +85,18 @@
   .topbar-links a:hover, .topbar-links a:focus-visible { color: var(--ink); }
 
   .hero { text-align: center; margin-bottom: 64px; }
+  .hero-intro { display: flex; align-items: center; gap: 24px; justify-content: center; margin-bottom: 16px; }
+  .hero-intro-text { text-align: left; }
+  .hero-logo { width: 80px; height: 80px; border-radius: 18px; flex-shrink: 0; }
   .hero-eyebrow {
     font-size: 13px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 1.6px; color: var(--amber); margin-bottom: 16px;
+    letter-spacing: 1.6px; color: var(--amber); margin-bottom: 8px;
   }
   .hero h1 {
     font-family: 'DM Serif Text', Georgia, serif;
     font-size: clamp(32px, 5.5vw, 48px); font-weight: 400;
     line-height: 1.15; letter-spacing: -0.5px; text-wrap: balance;
-    margin-bottom: 16px; color: var(--ink);
+    color: var(--ink);
   }
   .hero h1 em { font-style: italic; color: var(--amber); }
   .hero-sub {
@@ -324,7 +335,7 @@
 
 <div class="page">
   <nav class="topbar">
-    <span class="topbar-brand">Ratearr</span>
+    <span class="topbar-brand"><img class="topbar-logo" src="assets/img/favicon-32x32.png" alt="Ratearr logo">Ratearr</span>
     <div class="topbar-links">
       <a href="#features" data-i18n="nav_features">Features</a>
       <a href="#sources">Sources</a>
@@ -338,8 +349,13 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Browser Extension</div>
-    <h1 data-i18n-html="hero_title">Every movie rating.<br><em>One glance.</em></h1>
+    <div class="hero-intro">
+      <img class="hero-logo" src="assets/img/ratearr-icon.png" alt="Ratearr" width="80" height="80">
+      <div class="hero-intro-text">
+        <div class="hero-eyebrow" data-i18n="hero_eyebrow">Browser Extension</div>
+        <h1 data-i18n-html="hero_title">Every movie rating.<br><em>One glance.</em></h1>
+      </div>
+    </div>
     <p class="hero-sub" data-i18n="hero_sub">Ratearr aggregates scores from 6 sources — including Allocin&eacute; critics and audience as separate ratings — right in your browser toolbar.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://addons.mozilla.org/" data-i18n="cta_install">Install for Firefox</a>
