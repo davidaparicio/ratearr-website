@@ -1,4 +1,6 @@
 <title>Ratearr</title>
+<link rel="alternate" hreflang="en" href="https://www.ratearr.com/">
+<link rel="alternate" hreflang="fr" href="https://www.ratearr.fr/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap">
 
 <style>
@@ -327,10 +329,10 @@
       <a href="#sources">Sources</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <a href="https://github.com/davidaparicio/ratearr">GitHub</a>
-      <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+      <a class="lang-toggle" id="lang-toggle" aria-label="Switch language">
         <span class="lang-flag" data-lang="en">&#127468;&#127463;</span>
         <span class="lang-flag" data-lang="fr" style="display:none">&#127467;&#127479;</span>
-      </button>
+      </a>
     </div>
   </nav>
 
@@ -524,8 +526,8 @@
   <footer class="footer">
     <div class="footer-left" data-i18n-html="footer">Built by <a href="https://github.com/davidaparicio">David Aparicio</a> &middot; Open source under MIT</div>
     <div class="lang-switch">
-      <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
-      <button class="lang-btn" data-lang="fr" aria-label="Fran&ccedil;ais">FR</button>
+      <a class="lang-btn active" data-lang="en" href="https://www.ratearr.com/" aria-label="English">EN</a>
+      <a class="lang-btn" data-lang="fr" href="https://www.ratearr.fr/" aria-label="Fran&ccedil;ais">FR</a>
     </div>
   </footer>
 </div>
@@ -621,29 +623,33 @@ const I18N = {
     nav_faq: 'FAQ',
     faq_title: 'Confidentialité & FAQ',
     ds1_title: 'Aucune donnée partagée avec des tiers',
-    ds1_desc: 'Ratearr n'envoie jamais vos données à des tiers. Les appels API vont directement de votre navigateur vers TMDB, OMDb et Allociné.',
+    ds1_desc: 'Ratearr n’envoie jamais vos données à des tiers. Les appels API vont directement de votre navigateur vers TMDB, OMDb et Allociné.',
     ds2_title: 'Aucune donnée personnelle collectée',
-    ds2_desc: 'Pas de localisation, pas d'infos personnelles, pas d'historique de navigation. L'extension ne traite que le titre du film sur la page en cours.',
+    ds2_desc: 'Pas de localisation, pas d’infos personnelles, pas d’historique de navigation. L’extension ne traite que le titre du film sur la page en cours.',
     ds3_title: 'Données chiffrées en transit',
-    ds3_desc: 'Tous les appels API utilisent HTTPS. Aucune donnée n'est transmise en clair.',
+    ds3_desc: 'Tous les appels API utilisent HTTPS. Aucune donnée n’est transmise en clair.',
     ds4_title: 'Données stockées sur votre appareil',
-    ds4_desc: 'Les clés API et les notes en cache sont dans le stockage local de votre navigateur. Supprimez-les à tout moment depuis la page d'options.',
+    ds4_desc: 'Les clés API et les notes en cache sont dans le stockage local de votre navigateur. Supprimez-les à tout moment depuis la page d’options.',
     q1: 'Pourquoi Ratearr a-t-il besoin de clés API ?',
-    a1: 'TMDB et OMDb exigent des clés API gratuites pour utiliser leurs services. Cela permet à l'extension de fonctionner sans serveur — votre navigateur communique directement avec les APIs. Les clés restent stockées localement.',
-    q2: 'À quelles données l'extension accède-t-elle ?',
+    a1: 'TMDB et OMDb exigent des clés API gratuites pour utiliser leurs services. Cela permet à l’extension de fonctionner sans serveur — votre navigateur communique directement avec les APIs. Les clés restent stockées localement.',
+    q2: 'À quelles données l’extension accède-t-elle ?',
     a2: 'Uniquement le titre du film ou de la série sur la page en cours (via les métadonnées JSON-LD ou le titre de la page). Aucun historique, aucune donnée personnelle, aucune analyse. Le code source est entièrement ouvert.',
     q3: 'Puis-je supprimer mes données en cache ?',
-    a3: 'Oui. Ouvrez les options de l'extension et cliquez sur « Vider le cache ». Cela supprime toutes les notes stockées. Vos clés API peuvent être effacées depuis la même page.',
+    a3: 'Oui. Ouvrez les options de l’extension et cliquez sur « Vider le cache ». Cela supprime toutes les notes stockées. Vos clés API peuvent être effacées depuis la même page.',
     q4: 'Ratearr fonctionne-t-il sur Chrome ?',
     a4: 'Le MVP cible Firefox. Le support Chrome (Manifest V3) est prévu. Le code utilise WXT qui gère les builds multi-navigateurs.',
     footer: 'Créé par <a href="https://github.com/davidaparicio">David Aparicio</a> · Open source sous licence MIT',
   },
 };
 
-let currentLang = 'en';
+const LANG_DOMAINS = {
+  en: 'https://www.ratearr.com/',
+  fr: 'https://www.ratearr.fr/',
+};
+
+const currentLang = location.hostname.endsWith('.fr') ? 'fr' : 'en';
 
 function setLang(lang) {
-  currentLang = lang;
   const strings = I18N[lang];
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -670,14 +676,8 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
+const otherLang = currentLang === 'en' ? 'fr' : 'en';
+document.getElementById('lang-toggle').href = LANG_DOMAINS[otherLang];
 
-document.getElementById('lang-toggle').addEventListener('click', () => {
-  setLang(currentLang === 'en' ? 'fr' : 'en');
-});
-
-const browserLang = navigator.language.startsWith('fr') ? 'fr' : 'en';
-setLang(browserLang);
+setLang(currentLang);
 </script>
