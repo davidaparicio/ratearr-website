@@ -68,7 +68,10 @@
 
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 0; border-bottom: 1px solid var(--divider); margin-bottom: 56px;
+    padding: 20px 24px; border-bottom: 1px solid var(--divider); margin-bottom: 56px;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper);
+    max-width: 720px; margin-left: auto; margin-right: auto;
   }
   .topbar-brand {
     font-family: 'DM Serif Text', Georgia, serif; font-size: 20px;
