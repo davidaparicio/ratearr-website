@@ -750,6 +750,24 @@ const LANG_DOMAINS = {
 
 const currentLang = location.hostname.endsWith('.fr') ? 'fr' : 'en';
 
+const BROWSER_STORES = {
+  chrome:  { url: 'https://chromewebstore.google.com/', key: 'cta_install_chrome' },
+  firefox: { url: 'https://addons.mozilla.org/', key: 'cta_install_firefox' },
+  edge:    { url: 'https://microsoftedge.microsoft.com/addons/', key: 'cta_install_edge' },
+  opera:   { url: 'https://addons.opera.com/', key: 'cta_install_opera' },
+  safari:  { url: 'https://apps.apple.com/', key: 'cta_install_safari' },
+};
+
+function detectBrowser() {
+  const ua = navigator.userAgent;
+  if (ua.includes('OPR') || ua.includes('Opera')) return 'opera';
+  if (ua.includes('Edg/')) return 'edge';
+  if (ua.includes('Firefox')) return 'firefox';
+  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'safari';
+  if (ua.includes('Chrome')) return 'chrome';
+  return null;
+}
+
 function setLang(lang) {
   const strings = I18N[lang];
 
@@ -777,11 +795,13 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 
   const ctaEl = document.getElementById('cta-install');
-  if (ctaEl && typeof detectBrowser === 'function') {
+  if (ctaEl) {
     const b = detectBrowser();
     if (b && BROWSER_STORES[b]) {
+      ctaEl.href = BROWSER_STORES[b].url;
       ctaEl.textContent = strings[BROWSER_STORES[b].key];
     } else {
+      ctaEl.href = 'https://github.com/davidaparicio/ratearr';
       ctaEl.textContent = strings.cta_install;
     }
   }
@@ -791,33 +811,4 @@ const otherLang = currentLang === 'en' ? 'fr' : 'en';
 document.getElementById('lang-toggle').href = LANG_DOMAINS[otherLang];
 
 setLang(currentLang);
-
-const BROWSER_STORES = {
-  chrome:  { url: 'https://chromewebstore.google.com/', key: 'cta_install_chrome' },
-  firefox: { url: 'https://addons.mozilla.org/', key: 'cta_install_firefox' },
-  edge:    { url: 'https://microsoftedge.microsoft.com/addons/', key: 'cta_install_edge' },
-  opera:   { url: 'https://addons.opera.com/', key: 'cta_install_opera' },
-  safari:  { url: 'https://apps.apple.com/', key: 'cta_install_safari' },
-};
-
-function detectBrowser() {
-  const ua = navigator.userAgent;
-  if (ua.includes('OPR') || ua.includes('Opera')) return 'opera';
-  if (ua.includes('Edg/')) return 'edge';
-  if (ua.includes('Firefox')) return 'firefox';
-  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'safari';
-  if (ua.includes('Chrome')) return 'chrome';
-  return null;
-}
-
-const browser = detectBrowser();
-const cta = document.getElementById('cta-install');
-if (browser && BROWSER_STORES[browser]) {
-  const store = BROWSER_STORES[browser];
-  cta.href = store.url;
-  cta.textContent = I18N[currentLang][store.key];
-} else {
-  cta.href = 'https://github.com/davidaparicio/ratearr';
-  cta.textContent = I18N[currentLang].cta_install;
-}
 </script>
