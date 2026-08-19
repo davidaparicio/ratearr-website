@@ -388,7 +388,7 @@
     </div>
     <p class="hero-sub" data-i18n="hero_sub">Ratearr aggregates scores from 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama — right in your browser toolbar.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://addons.mozilla.org/" data-i18n="cta_install">Install for Firefox</a>
+      <a class="btn btn-primary" id="cta-install" href="https://github.com/davidaparicio/ratearr" data-i18n="cta_install">Install Extension</a>
       <a class="btn btn-secondary" href="https://github.com/davidaparicio/ratearr" data-i18n="cta_source">View Source</a>
     </div>
 
@@ -529,7 +529,7 @@
       <div class="step">
         <div class="step-num">1</div>
         <h3 data-i18n="s1_title">Install</h3>
-        <p data-i18n="s1_desc">Add Ratearr from Firefox Add-ons. Enter your TMDB and OMDb API keys in Settings.</p>
+        <p data-i18n="s1_desc">Add Ratearr from your browser's extension store. Enter your TMDB and OMDb API keys in Settings.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -592,8 +592,8 @@
         <p data-i18n="a3">Yes. Open the extension options and click "Clear Cache". This removes all stored ratings. Your API keys can be cleared from the same page.</p>
       </details>
       <details class="faq-item">
-        <summary data-i18n="q4">Does Ratearr work on Chrome?</summary>
-        <p data-i18n="a4">The MVP targets Firefox. The codebase uses WXT, which supports Chrome, Firefox, Edge, Opera, and Safari out of the box. Use the <code>-b</code> flag to target any browser (e.g.&nbsp;<code>npm&nbsp;run&nbsp;build:firefox</code>, <code>npx&nbsp;wxt&nbsp;build&nbsp;-b&nbsp;edge</code>). Chrome and Edge produce MV3 builds; Firefox and Safari produce MV2.</p>
+        <summary data-i18n="q4">Which browsers are supported?</summary>
+        <p data-i18n="a4">Ratearr runs on Chrome, Firefox, Edge, Opera, and Safari. Built with WXT, each browser gets a native build — MV3 for Chrome and Edge, MV2 for Firefox and Safari.</p>
       </details>
     </div>
   </section>
@@ -614,7 +614,12 @@ const I18N = {
     hero_eyebrow: 'Browser Extension',
     hero_title: 'Every movie rating.<br><em>One glance.</em>',
     hero_sub: 'Ratearr aggregates scores from 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allociné, SensCritique, Letterboxd, and Télérama — right in your browser toolbar.',
-    cta_install: 'Install for Firefox',
+    cta_install_chrome: 'Install for Chrome',
+    cta_install_firefox: 'Install for Firefox',
+    cta_install_edge: 'Install for Edge',
+    cta_install_opera: 'Install for Opera',
+    cta_install_safari: 'Install for Safari',
+    cta_install: 'Install Extension',
     cta_source: 'View Source',
     mock_aria: 'Ratearr popup showing ratings for Inception',
     mock_dym: 'Did you mean?',
@@ -645,7 +650,7 @@ const I18N = {
     f8_desc: 'Back up your settings as JSON from the options page. Restore them on any browser in one click.',
     how_title: 'Three steps to all the scores',
     s1_title: 'Install',
-    s1_desc: 'Add Ratearr from Firefox Add-ons. Enter your TMDB and OMDb API keys in Settings.',
+    s1_desc: 'Add Ratearr from your browser's extension store. Enter your TMDB and OMDb API keys in Settings.',
     s2_title: 'Browse',
     s2_desc: 'Visit any movie page on IMDb, TMDB, Allociné, Netflix, Prime Video, or Disney+. Or select a title anywhere and right-click.',
     s3_title: 'Compare',
@@ -666,8 +671,8 @@ const I18N = {
     a2: 'Only the movie or TV title on the current page (via JSON-LD metadata or the page title). No browsing history, no personal data, no analytics. The source code is fully open for audit.',
     q3: 'Can I delete my cached data?',
     a3: 'Yes. Open the extension options and click "Clear Cache". This removes all stored ratings. Your API keys can be cleared from the same page.',
-    q4: 'Does Ratearr work on Chrome?',
-    a4: 'The MVP targets Firefox. The codebase uses WXT, which supports Chrome, Firefox, Edge, Opera, and Safari out of the box. Use the -b flag to target any browser (e.g. npm run build:firefox, npx wxt build -b edge). Chrome and Edge produce MV3 builds; Firefox and Safari produce MV2.',
+    q4: 'Which browsers are supported?',
+    a4: 'Ratearr runs on Chrome, Firefox, Edge, Opera, and Safari. Built with WXT, each browser gets a native build — MV3 for Chrome and Edge, MV2 for Firefox and Safari.',
     footer: 'Built by <a href="https://github.com/davidaparicio">David Aparicio</a> · Open source under MIT',
   },
   fr: {
@@ -675,7 +680,12 @@ const I18N = {
     hero_eyebrow: 'Extension navigateur',
     hero_title: 'Toutes les notes de films.<br><em>En un coup d’œil.</em>',
     hero_sub: ‘Ratearr regroupe les notes de 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allociné, SensCritique, Letterboxd et Télérama — directement dans votre barre d’outils.’,
-    cta_install: 'Installer pour Firefox',
+    cta_install_chrome: 'Installer pour Chrome',
+    cta_install_firefox: 'Installer pour Firefox',
+    cta_install_edge: 'Installer pour Edge',
+    cta_install_opera: 'Installer pour Opera',
+    cta_install_safari: 'Installer pour Safari',
+    cta_install: 'Installer l'extension',
     cta_source: 'Voir le code',
     mock_aria: 'Popup Ratearr affichant les notes d’Inception',
     mock_dym: 'Vous cherchiez peut-être ?',
@@ -706,7 +716,7 @@ const I18N = {
     f8_desc: ‘Sauvegardez vos paramètres en JSON depuis la page d’options. Restaurez-les sur n’importe quel navigateur en un clic.’,
     how_title: ‘Trois étapes pour toutes les notes’,
     s1_title: 'Installer',
-    s1_desc: 'Ajoutez Ratearr depuis les modules Firefox. Entrez vos clés API TMDB et OMDb dans les paramètres.',
+    s1_desc: 'Ajoutez Ratearr depuis le magasin d'extensions de votre navigateur. Entrez vos clés API TMDB et OMDb dans les paramètres.',
     s2_title: 'Naviguer',
     s2_desc: ‘Visitez une page de film sur IMDb, TMDB, Allociné, Netflix, Prime Video ou Disney+. Ou sélectionnez un titre et faites clic droit.’,
     s3_title: ‘Comparer’,
@@ -727,8 +737,8 @@ const I18N = {
     a2: 'Uniquement le titre du film ou de la série sur la page en cours (via les métadonnées JSON-LD ou le titre de la page). Aucun historique, aucune donnée personnelle, aucune analyse. Le code source est entièrement ouvert.',
     q3: 'Puis-je supprimer mes données en cache ?',
     a3: 'Oui. Ouvrez les options de l’extension et cliquez sur « Vider le cache ». Cela supprime toutes les notes stockées. Vos clés API peuvent être effacées depuis la même page.',
-    q4: 'Ratearr fonctionne-t-il sur Chrome ?',
-    a4: 'Le MVP cible Firefox. Le code utilise WXT, qui supporte Chrome, Firefox, Edge, Opera et Safari nativement. Utilisez le flag -b pour cibler un navigateur (ex. npm run build:firefox, npx wxt build -b edge). Chrome et Edge produisent des builds MV3 ; Firefox et Safari produisent du MV2.',
+    q4: 'Quels navigateurs sont supportés ?',
+    a4: 'Ratearr fonctionne sur Chrome, Firefox, Edge, Opera et Safari. Construit avec WXT, chaque navigateur reçoit un build natif — MV3 pour Chrome et Edge, MV2 pour Firefox et Safari.',
     footer: 'Créé par <a href="https://github.com/davidaparicio">David Aparicio</a> · Open source sous licence MIT',
   },
 };
@@ -765,10 +775,49 @@ function setLang(lang) {
   });
 
   document.documentElement.lang = lang;
+
+  const ctaEl = document.getElementById('cta-install');
+  if (ctaEl && typeof detectBrowser === 'function') {
+    const b = detectBrowser();
+    if (b && BROWSER_STORES[b]) {
+      ctaEl.textContent = strings[BROWSER_STORES[b].key];
+    } else {
+      ctaEl.textContent = strings.cta_install;
+    }
+  }
 }
 
 const otherLang = currentLang === 'en' ? 'fr' : 'en';
 document.getElementById('lang-toggle').href = LANG_DOMAINS[otherLang];
 
 setLang(currentLang);
+
+const BROWSER_STORES = {
+  chrome:  { url: 'https://chromewebstore.google.com/', key: 'cta_install_chrome' },
+  firefox: { url: 'https://addons.mozilla.org/', key: 'cta_install_firefox' },
+  edge:    { url: 'https://microsoftedge.microsoft.com/addons/', key: 'cta_install_edge' },
+  opera:   { url: 'https://addons.opera.com/', key: 'cta_install_opera' },
+  safari:  { url: 'https://apps.apple.com/', key: 'cta_install_safari' },
+};
+
+function detectBrowser() {
+  const ua = navigator.userAgent;
+  if (ua.includes('OPR') || ua.includes('Opera')) return 'opera';
+  if (ua.includes('Edg/')) return 'edge';
+  if (ua.includes('Firefox')) return 'firefox';
+  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'safari';
+  if (ua.includes('Chrome')) return 'chrome';
+  return null;
+}
+
+const browser = detectBrowser();
+const cta = document.getElementById('cta-install');
+if (browser && BROWSER_STORES[browser]) {
+  const store = BROWSER_STORES[browser];
+  cta.href = store.url;
+  cta.textContent = I18N[currentLang][store.key];
+} else {
+  cta.href = 'https://github.com/davidaparicio/ratearr';
+  cta.textContent = I18N[currentLang].cta_install;
+}
 </script>
