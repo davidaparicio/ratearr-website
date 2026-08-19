@@ -1,12 +1,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ratearr</title>
-<meta name="description" content="Ratearr aggregates movie and TV ratings from 6 sources — including Allocin&eacute; critics and audience — right in your browser toolbar. One glance, every score.">
+<meta name="description" content="Ratearr aggregates movie and TV ratings from 10 sources — including Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama — right in your browser toolbar. One glance, every score.">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ratearr — Every movie rating. One glance.">
-<meta property="og:description" content="Ratearr aggregates movie and TV ratings from 6 sources — including Allocin&eacute; critics and audience — right in your browser toolbar.">
+<meta property="og:description" content="Ratearr aggregates movie and TV ratings from 10 sources — including Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama — right in your browser toolbar.">
 <meta property="og:url" content="https://www.ratearr.com/">
 <meta property="og:image" content="https://www.ratearr.com/assets/img/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -19,7 +19,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ratearr — Every movie rating. One glance.">
-<meta name="twitter:description" content="Ratearr aggregates movie and TV ratings from 6 sources — including Allocin&eacute; critics and audience — right in your browser toolbar.">
+<meta name="twitter:description" content="Ratearr aggregates movie and TV ratings from 10 sources — including Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama — right in your browser toolbar.">
 <meta name="twitter:image" content="https://www.ratearr.com/assets/img/icon-512.png">
 <meta name="twitter:image:alt" content="Ratearr logo">
 
@@ -225,8 +225,8 @@
     letter-spacing: 1.4px; color: var(--muted); margin-bottom: 20px;
   }
   .sources-strip {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 10px; max-width: 420px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 10px; max-width: 680px; margin: 0 auto;
   }
   .source-chip {
     display: flex; flex-direction: column; align-items: center; gap: 4px;
@@ -311,7 +311,11 @@
     padding: 0 16px 14px 44px; font-size: 13px; color: var(--muted); line-height: 1.6;
   }
 
+  @media (max-width: 680px) {
+    .sources-strip { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 520px) {
+    .sources-strip { grid-template-columns: repeat(2, 1fr); }
     .safety-grid { grid-template-columns: 1fr; }
   }
 
@@ -382,7 +386,7 @@
         <h1 data-i18n-html="hero_title">Every movie rating.<br><em>One glance.</em></h1>
       </div>
     </div>
-    <p class="hero-sub" data-i18n="hero_sub">Ratearr aggregates scores from 6 sources — including Allocin&eacute; critics and audience as separate ratings — right in your browser toolbar.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Ratearr aggregates scores from 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama — right in your browser toolbar.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://addons.mozilla.org/" data-i18n="cta_install">Install for Firefox</a>
       <a class="btn btn-secondary" href="https://github.com/davidaparicio/ratearr" data-i18n="cta_source">View Source</a>
@@ -398,8 +402,8 @@
           </div>
         </div>
         <div class="mock-aggregate">
-          <span class="mock-agg-score">8.3</span>
-          <span class="mock-agg-meta">/ 10 &middot; 6 sources</span>
+          <span class="mock-agg-score">8.2</span>
+          <span class="mock-agg-meta">/ 10 &middot; 8 sources</span>
         </div>
         <div class="mock-row">
           <span class="mock-source">TMDB</span>
@@ -416,10 +420,12 @@
         <div class="mock-row">
           <span class="mock-source">Rotten Tomatoes</span>
           <span class="mock-value">87 / 100</span>
+          <span class="mock-link" data-i18n-title="tip_rt" title="Search Inception on Rotten Tomatoes">&nearr;</span>
         </div>
         <div class="mock-row">
           <span class="mock-source">Metacritic</span>
           <span class="mock-value">74 / 100</span>
+          <span class="mock-link" data-i18n-title="tip_metacritic" title="Search Inception on Metacritic">&nearr;</span>
         </div>
         <div class="mock-row">
           <span class="mock-source">Allocin&eacute; Presse</span>
@@ -433,18 +439,30 @@
           <span class="mock-count">(3.6K)</span>
           <span class="mock-link" data-i18n-title="tip_allocine" title="View Inception on Allocin&eacute;">&nearr;</span>
         </div>
+        <div class="mock-row">
+          <span class="mock-source">SensCritique</span>
+          <span class="mock-value">7.5 / 10</span>
+          <span class="mock-count">(228.8K)</span>
+          <span class="mock-link" data-i18n-title="tip_senscritique" title="View Inception on SensCritique">&nearr;</span>
+        </div>
+        <div class="mock-row">
+          <span class="mock-source">Letterboxd</span>
+          <span class="mock-value">4.2 / 5</span>
+          <span class="mock-count">(4.4M)</span>
+          <span class="mock-link" data-i18n-title="tip_letterboxd" title="View Inception on Letterboxd">&nearr;</span>
+        </div>
         <div class="mock-dym">
           <div class="mock-dym-header" data-i18n="mock_dym">Did you mean?</div>
           <div class="mock-dym-row">Inception (1980)</div>
           <div class="mock-dym-row">Inception: The Cobol Job (2010)</div>
-          <div class="mock-dym-row">Bikini Inception (2015)</div>
+          <div class="mock-dym-row">The Crack: Inception (2019)</div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="sources-section" id="sources">
-    <div class="section-label" data-i18n="sources_label">6 sources, native scales</div>
+    <div class="section-label" data-i18n="sources_label">10 sources, native scales</div>
     <div class="sources-strip">
       <div class="source-chip"><span class="chip-name">TMDB</span><span class="chip-scale">/ 10</span></div>
       <div class="source-chip"><span class="chip-name">IMDb</span><span class="chip-scale">/ 10</span></div>
@@ -452,6 +470,10 @@
       <div class="source-chip"><span class="chip-name">Metacritic</span><span class="chip-scale">/ 100</span></div>
       <div class="source-chip"><span class="chip-name">Allocin&eacute; Presse</span><span class="chip-scale">/ 5</span></div>
       <div class="source-chip"><span class="chip-name">Allocin&eacute; Spectateurs</span><span class="chip-scale">/ 5</span></div>
+      <div class="source-chip"><span class="chip-name">SensCritique</span><span class="chip-scale">/ 10</span></div>
+      <div class="source-chip"><span class="chip-name">Letterboxd</span><span class="chip-scale">/ 5</span></div>
+      <div class="source-chip"><span class="chip-name">T&eacute;l&eacute;rama</span><span class="chip-scale">/ 5</span></div>
+      <div class="source-chip"><span class="chip-name">T&eacute;l&eacute;rama Abonn&eacute;s</span><span class="chip-scale">/ 5</span></div>
     </div>
   </section>
 
@@ -461,7 +483,7 @@
       <div class="feature-card">
         <span class="feature-icon" aria-hidden="true">&#9881;</span>
         <h3 data-i18n="f1_title">Auto-detect</h3>
-        <p data-i18n="f1_desc">Recognizes titles on IMDb, TMDB, and Allocin&eacute; automatically — including SPA page transitions.</p>
+        <p data-i18n="f1_desc">Recognizes titles on 8 sites — IMDb, TMDB, Allocin&eacute;, Netflix, Prime Video, and Disney+ — including SPA transitions.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon" aria-hidden="true">&#128269;</span>
@@ -488,6 +510,16 @@
         <h3 data-i18n="f6_title">Allocin&eacute; split</h3>
         <p data-i18n="f6_desc">The only aggregator that shows Allocin&eacute; critics and audience scores as separate ratings.</p>
       </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">&#9000;</span>
+        <h3 data-i18n="f7_title">Keyboard shortcut</h3>
+        <p data-i18n="f7_desc">Press Alt+R to open the popup instantly. Customizable in your browser's extension shortcuts.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">&#128230;</span>
+        <h3 data-i18n="f8_title">Export / Import</h3>
+        <p data-i18n="f8_desc">Back up your settings as JSON from the options page. Restore them on any browser in one click.</p>
+      </div>
     </div>
   </section>
 
@@ -502,12 +534,12 @@
       <div class="step">
         <div class="step-num">2</div>
         <h3 data-i18n="s2_title">Browse</h3>
-        <p data-i18n="s2_desc">Visit any movie page on IMDb, TMDB, or Allocin&eacute;. Or select a title anywhere and right-click.</p>
+        <p data-i18n="s2_desc">Visit any movie page on IMDb, TMDB, Allocin&eacute;, Netflix, Prime Video, or Disney+. Or select a title anywhere and right-click.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <h3 data-i18n="s3_title">Compare</h3>
-        <p data-i18n="s3_desc">Click the toolbar icon. Six sources, native scales, one popup. The badge shows the aggregate.</p>
+        <p data-i18n="s3_desc">Click the toolbar icon — or press Alt+R. Ten sources, native scales, one popup. The badge shows the aggregate.</p>
       </div>
     </div>
   </section>
@@ -520,7 +552,7 @@
         <span class="safety-icon" aria-hidden="true">&#10007;</span>
         <div>
           <strong data-i18n="ds1_title">No data shared with third parties</strong>
-          <p data-i18n="ds1_desc">Ratearr never sends your data to third parties. API calls go directly from your browser to TMDB, OMDb, and Allocin&eacute;.</p>
+          <p data-i18n="ds1_desc">Ratearr never sends your data to third parties. API calls go directly from your browser to TMDB, OMDb, Allocin&eacute;, SensCritique, Letterboxd, and T&eacute;l&eacute;rama.</p>
         </div>
       </div>
       <div class="safety-item safety-good">
@@ -561,7 +593,7 @@
       </details>
       <details class="faq-item">
         <summary data-i18n="q4">Does Ratearr work on Chrome?</summary>
-        <p data-i18n="a4">The MVP targets Firefox. Chrome support (Manifest V3) is planned. The codebase uses WXT which handles cross-browser builds.</p>
+        <p data-i18n="a4">The MVP targets Firefox. The codebase uses WXT, which supports Chrome, Firefox, Edge, Opera, and Safari out of the box. Use the <code>-b</code> flag to target any browser (e.g.&nbsp;<code>npm&nbsp;run&nbsp;build:firefox</code>, <code>npx&nbsp;wxt&nbsp;build&nbsp;-b&nbsp;edge</code>). Chrome and Edge produce MV3 builds; Firefox and Safari produce MV2.</p>
       </details>
     </div>
   </section>
@@ -581,7 +613,7 @@ const I18N = {
     nav_features: 'Features',
     hero_eyebrow: 'Browser Extension',
     hero_title: 'Every movie rating.<br><em>One glance.</em>',
-    hero_sub: 'Ratearr aggregates scores from 6 sources — including Allociné critics and audience as separate ratings — right in your browser toolbar.',
+    hero_sub: 'Ratearr aggregates scores from 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allociné, SensCritique, Letterboxd, and Télérama — right in your browser toolbar.',
     cta_install: 'Install for Firefox',
     cta_source: 'View Source',
     mock_aria: 'Ratearr popup showing ratings for Inception',
@@ -589,10 +621,14 @@ const I18N = {
     tip_tmdb: 'View Inception on TMDB',
     tip_imdb: 'View Inception on IMDb',
     tip_allocine: 'View Inception on Allociné',
-    sources_label: '6 sources, native scales',
+    tip_rt: 'Search Inception on Rotten Tomatoes',
+    tip_metacritic: 'Search Inception on Metacritic',
+    tip_senscritique: 'View Inception on SensCritique',
+    tip_letterboxd: 'View Inception on Letterboxd',
+    sources_label: '10 sources, native scales',
     features_title: 'Built for how you browse',
     f1_title: 'Auto-detect',
-    f1_desc: 'Recognizes titles on IMDb, TMDB, and Allociné automatically — including SPA page transitions.',
+    f1_desc: 'Recognizes titles on 8 sites — IMDb, TMDB, Allociné, Netflix, Prime Video, and Disney+ — including SPA transitions.',
     f2_title: 'Context Menu',
     f2_desc: 'Select any movie title on any page, right-click, and get ratings instantly.',
     f3_title: 'Bilingual',
@@ -603,17 +639,21 @@ const I18N = {
     f5_desc: 'Ratings are cached locally with a configurable TTL. Repeat visits load instantly.',
     f6_title: 'Allociné split',
     f6_desc: 'The only aggregator that shows Allociné critics and audience scores as separate ratings.',
+    f7_title: 'Keyboard shortcut',
+    f7_desc: 'Press Alt+R to open the popup instantly. Customizable in your browser’s extension shortcuts.',
+    f8_title: 'Export / Import',
+    f8_desc: 'Back up your settings as JSON from the options page. Restore them on any browser in one click.',
     how_title: 'Three steps to all the scores',
     s1_title: 'Install',
     s1_desc: 'Add Ratearr from Firefox Add-ons. Enter your TMDB and OMDb API keys in Settings.',
     s2_title: 'Browse',
-    s2_desc: 'Visit any movie page on IMDb, TMDB, or Allociné. Or select a title anywhere and right-click.',
+    s2_desc: 'Visit any movie page on IMDb, TMDB, Allociné, Netflix, Prime Video, or Disney+. Or select a title anywhere and right-click.',
     s3_title: 'Compare',
-    s3_desc: 'Click the toolbar icon. Six sources, native scales, one popup. The badge shows the aggregate.',
+    s3_desc: 'Click the toolbar icon — or press Alt+R. Ten sources, native scales, one popup. The badge shows the aggregate.',
     nav_faq: 'FAQ',
     faq_title: 'Data Safety & FAQ',
     ds1_title: 'No data shared with third parties',
-    ds1_desc: 'Ratearr never sends your data to third parties. API calls go directly from your browser to TMDB, OMDb, and Allociné.',
+    ds1_desc: 'Ratearr never sends your data to third parties. API calls go directly from your browser to TMDB, OMDb, Allociné, SensCritique, Letterboxd, and Télérama.',
     ds2_title: 'No personal data collected',
     ds2_desc: 'No location, no personal info, no browsing history. The extension only processes the movie title on the current page.',
     ds3_title: 'Data encrypted in transit',
@@ -627,14 +667,14 @@ const I18N = {
     q3: 'Can I delete my cached data?',
     a3: 'Yes. Open the extension options and click "Clear Cache". This removes all stored ratings. Your API keys can be cleared from the same page.',
     q4: 'Does Ratearr work on Chrome?',
-    a4: 'The MVP targets Firefox. Chrome support (Manifest V3) is planned. The codebase uses WXT which handles cross-browser builds.',
+    a4: 'The MVP targets Firefox. The codebase uses WXT, which supports Chrome, Firefox, Edge, Opera, and Safari out of the box. Use the -b flag to target any browser (e.g. npm run build:firefox, npx wxt build -b edge). Chrome and Edge produce MV3 builds; Firefox and Safari produce MV2.',
     footer: 'Built by <a href="https://github.com/davidaparicio">David Aparicio</a> · Open source under MIT',
   },
   fr: {
     nav_features: 'Fonctions',
     hero_eyebrow: 'Extension navigateur',
     hero_title: 'Toutes les notes de films.<br><em>En un coup d’œil.</em>',
-    hero_sub: 'Ratearr regroupe les notes de 6 sources — dont la Presse et les Spectateurs d’Allociné en scores distincts — directement dans votre barre d’outils.',
+    hero_sub: ‘Ratearr regroupe les notes de 10 sources — TMDB, IMDb, Rotten Tomatoes, Metacritic, Allociné, SensCritique, Letterboxd et Télérama — directement dans votre barre d’outils.’,
     cta_install: 'Installer pour Firefox',
     cta_source: 'Voir le code',
     mock_aria: 'Popup Ratearr affichant les notes d’Inception',
@@ -642,10 +682,14 @@ const I18N = {
     tip_tmdb: 'Voir Inception sur TMDB',
     tip_imdb: 'Voir Inception sur IMDb',
     tip_allocine: 'Voir Inception sur Allociné',
-    sources_label: '6 sources, échelles natives',
+    tip_rt: 'Chercher Inception sur Rotten Tomatoes',
+    tip_metacritic: 'Chercher Inception sur Metacritic',
+    tip_senscritique: 'Voir Inception sur SensCritique',
+    tip_letterboxd: 'Voir Inception sur Letterboxd',
+    sources_label: '10 sources, échelles natives',
     features_title: 'Conçu pour votre navigation',
     f1_title: 'Détection auto',
-    f1_desc: 'Reconnaît les titres sur IMDb, TMDB et Allociné automatiquement — y compris les navigations SPA.',
+    f1_desc: 'Reconnaît les titres sur 8 sites — IMDb, TMDB, Allociné, Netflix, Prime Video et Disney+ — y compris les navigations SPA.',
     f2_title: 'Menu contextuel',
     f2_desc: 'Sélectionnez un titre de film sur n’importe quelle page, clic droit, et obtenez les notes instantanément.',
     f3_title: 'Bilingue',
@@ -654,19 +698,23 @@ const I18N = {
     f4_desc: 'Aucun tracking, aucune analyse, aucun compte. Les clés API restent dans le stockage local de votre navigateur.',
     f5_title: 'Cache rapide',
     f5_desc: 'Les notes sont mises en cache localement avec un TTL configurable. Les revisites chargent instantanément.',
-    f6_title: 'Allociné séparé',
-    f6_desc: 'Le seul agrégateur qui affiche les notes Presse et Spectateurs d’Allociné comme deux scores distincts.',
-    how_title: 'Trois étapes pour toutes les notes',
+    f6_title: ‘Allociné séparé’,
+    f6_desc: ‘Le seul agrégateur qui affiche les notes Presse et Spectateurs d’Allociné comme deux scores distincts.’,
+    f7_title: ‘Raccourci clavier’,
+    f7_desc: ‘Appuyez sur Alt+R pour ouvrir la popup instantanément. Personnalisable dans les raccourcis d’extensions de votre navigateur.’,
+    f8_title: ‘Export / Import’,
+    f8_desc: ‘Sauvegardez vos paramètres en JSON depuis la page d’options. Restaurez-les sur n’importe quel navigateur en un clic.’,
+    how_title: ‘Trois étapes pour toutes les notes’,
     s1_title: 'Installer',
     s1_desc: 'Ajoutez Ratearr depuis les modules Firefox. Entrez vos clés API TMDB et OMDb dans les paramètres.',
     s2_title: 'Naviguer',
-    s2_desc: 'Visitez une page de film sur IMDb, TMDB ou Allociné. Ou sélectionnez un titre et faites clic droit.',
-    s3_title: 'Comparer',
-    s3_desc: 'Cliquez sur l’icône dans la barre d’outils. Six sources, échelles natives, une popup. Le badge affiche la moyenne.',
+    s2_desc: ‘Visitez une page de film sur IMDb, TMDB, Allociné, Netflix, Prime Video ou Disney+. Ou sélectionnez un titre et faites clic droit.’,
+    s3_title: ‘Comparer’,
+    s3_desc: ‘Cliquez sur l’icône — ou appuyez sur Alt+R. Dix sources, échelles natives, une popup. Le badge affiche la moyenne.’,
     nav_faq: 'FAQ',
     faq_title: 'Confidentialité & FAQ',
     ds1_title: 'Aucune donnée partagée avec des tiers',
-    ds1_desc: 'Ratearr n’envoie jamais vos données à des tiers. Les appels API vont directement de votre navigateur vers TMDB, OMDb et Allociné.',
+    ds1_desc: ‘Ratearr n’envoie jamais vos données à des tiers. Les appels API vont directement de votre navigateur vers TMDB, OMDb, Allociné, SensCritique, Letterboxd et Télérama.’,
     ds2_title: 'Aucune donnée personnelle collectée',
     ds2_desc: 'Pas de localisation, pas d’infos personnelles, pas d’historique de navigation. L’extension ne traite que le titre du film sur la page en cours.',
     ds3_title: 'Données chiffrées en transit',
@@ -680,7 +728,7 @@ const I18N = {
     q3: 'Puis-je supprimer mes données en cache ?',
     a3: 'Oui. Ouvrez les options de l’extension et cliquez sur « Vider le cache ». Cela supprime toutes les notes stockées. Vos clés API peuvent être effacées depuis la même page.',
     q4: 'Ratearr fonctionne-t-il sur Chrome ?',
-    a4: 'Le MVP cible Firefox. Le support Chrome (Manifest V3) est prévu. Le code utilise WXT qui gère les builds multi-navigateurs.',
+    a4: 'Le MVP cible Firefox. Le code utilise WXT, qui supporte Chrome, Firefox, Edge, Opera et Safari nativement. Utilisez le flag -b pour cibler un navigateur (ex. npm run build:firefox, npx wxt build -b edge). Chrome et Edge produisent des builds MV3 ; Firefox et Safari produisent du MV2.',
     footer: 'Créé par <a href="https://github.com/davidaparicio">David Aparicio</a> · Open source sous licence MIT',
   },
 };
