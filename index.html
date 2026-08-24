@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ratearr</title>
@@ -621,86 +622,86 @@
 <script src="i18n/es.js"></script>
 <script src="i18n/it.js"></script>
 <script>
-const SUPPORTED_LANGS = [‘en’, ‘fr’, ‘de’, ‘es’, ‘it’];
+const SUPPORTED_LANGS = ['en', 'fr', 'de', 'es', 'it'];
 
 const LANG_URLS = {
-  en: ‘https://www.ratearr.com/’,
-  fr: ‘https://www.ratearr.fr/’,
-  de: ‘https://www.ratearr.com/?lang=de’,
-  es: ‘https://www.ratearr.com/?lang=es’,
-  it: ‘https://www.ratearr.com/?lang=it’,
+  en: 'https://www.ratearr.com/',
+  fr: 'https://www.ratearr.fr/',
+  de: 'https://www.ratearr.com/?lang=de',
+  es: 'https://www.ratearr.com/?lang=es',
+  it: 'https://www.ratearr.com/?lang=it',
 };
 
 function detectLang() {
   const params = new URLSearchParams(location.search);
-  const qLang = params.get(‘lang’);
+  const qLang = params.get('lang');
   if (qLang && SUPPORTED_LANGS.includes(qLang)) return qLang;
-  if (location.hostname.endsWith(‘.fr’)) return ‘fr’;
-  return ‘en’;
+  if (location.hostname.endsWith('.fr')) return 'fr';
+  return 'en';
 }
 
 const currentLang = detectLang();
 
 const BROWSER_STORES = {
-  chrome:  { url: ‘https://chromewebstore.google.com/’, key: ‘cta_install_chrome’ },
-  firefox: { url: ‘https://addons.mozilla.org/firefox/addon/ratearr/’, key: ‘cta_install_firefox’ },
-  edge:    { url: ‘https://microsoftedge.microsoft.com/addons/’, key: ‘cta_install_edge’ },
-  opera:   { url: ‘https://addons.opera.com/’, key: ‘cta_install_opera’ },
-  safari:  { url: ‘https://apps.apple.com/’, key: ‘cta_install_safari’ },
+  chrome:  { url: 'https://chromewebstore.google.com/', key: 'cta_install_chrome' },
+  firefox: { url: 'https://addons.mozilla.org/firefox/addon/ratearr/', key: 'cta_install_firefox' },
+  edge:    { url: 'https://microsoftedge.microsoft.com/addons/', key: 'cta_install_edge' },
+  opera:   { url: 'https://addons.opera.com/', key: 'cta_install_opera' },
+  safari:  { url: 'https://apps.apple.com/', key: 'cta_install_safari' },
 };
 
 function detectBrowser() {
   const ua = navigator.userAgent;
-  if (ua.includes(‘OPR’) || ua.includes(‘Opera’)) return ‘opera’;
-  if (ua.includes(‘Edg/’)) return ‘edge’;
-  if (ua.includes(‘Firefox’)) return ‘firefox’;
-  if (ua.includes(‘Safari’) && !ua.includes(‘Chrome’)) return ‘safari’;
-  if (ua.includes(‘Chrome’)) return ‘chrome’;
+  if (ua.includes('OPR') || ua.includes('Opera')) return 'opera';
+  if (ua.includes('Edg/')) return 'edge';
+  if (ua.includes('Firefox')) return 'firefox';
+  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'safari';
+  if (ua.includes('Chrome')) return 'chrome';
   return null;
 }
 
 function setLang(lang) {
   const strings = I18N[lang];
 
-  document.querySelectorAll(‘[data-i18n]’).forEach(el => {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
     el.textContent = strings[el.dataset.i18n];
   });
-  document.querySelectorAll(‘[data-i18n-html]’).forEach(el => {
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
     el.innerHTML = strings[el.dataset.i18nHtml];
   });
-  document.querySelectorAll(‘[data-i18n-aria]’).forEach(el => {
-    el.setAttribute(‘aria-label’, strings[el.dataset.i18nAria]);
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    el.setAttribute('aria-label', strings[el.dataset.i18nAria]);
   });
-  document.querySelectorAll(‘[data-i18n-title]’).forEach(el => {
-    el.setAttribute(‘title’, strings[el.dataset.i18nTitle]);
-  });
-
-  document.querySelectorAll(‘.lang-btn’).forEach(btn => {
-    btn.classList.toggle(‘active’, btn.dataset.lang === lang);
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.setAttribute('title', strings[el.dataset.i18nTitle]);
   });
 
-  document.querySelectorAll(‘.lang-flag’).forEach(flag => {
-    flag.style.display = flag.dataset.lang === lang ? ‘none’ : ‘inline’;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  document.querySelectorAll('.lang-flag').forEach(flag => {
+    flag.style.display = flag.dataset.lang === lang ? 'none' : 'inline';
   });
 
   document.documentElement.lang = lang;
 
-  const ctaEl = document.getElementById(‘cta-install’);
+  const ctaEl = document.getElementById('cta-install');
   if (ctaEl) {
     const b = detectBrowser();
     if (b && BROWSER_STORES[b]) {
       ctaEl.href = BROWSER_STORES[b].url;
       ctaEl.textContent = strings[BROWSER_STORES[b].key];
     } else {
-      ctaEl.href = ‘https://github.com/davidaparicio/ratearr’;
+      ctaEl.href = 'https://github.com/davidaparicio/ratearr';
       ctaEl.textContent = strings.cta_install;
     }
   }
 }
 
-const langToggle = document.getElementById(‘lang-toggle’);
+const langToggle = document.getElementById('lang-toggle');
 if (langToggle) {
-  const otherLang = currentLang === ‘fr’ ? ‘en’ : ‘fr’;
+  const otherLang = currentLang === 'fr' ? 'en' : 'fr';
   langToggle.href = LANG_URLS[otherLang];
 }
 
