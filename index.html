@@ -329,13 +329,38 @@
   .footer-left a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
   .footer-left a:hover { color: var(--ink); }
 
-  .lang-toggle {
+  .lang-picker {
+    position: relative; display: inline-flex; align-items: center;
+  }
+  .lang-picker-btn {
     background: none; border: none; cursor: pointer; font-size: 20px;
     line-height: 1; padding: 2px 4px; border-radius: 4px;
     transition: transform 0.15s;
   }
-  .lang-toggle:hover { transform: scale(1.15); }
-  .lang-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .lang-picker-btn:hover { transform: scale(1.15); }
+  .lang-picker-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .lang-picker-btn::after {
+    content: ''; display: inline-block; width: 0; height: 0;
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 4px solid var(--muted); margin-left: 4px; vertical-align: middle;
+  }
+  .lang-dropdown {
+    display: none; position: absolute; top: 100%; right: 0;
+    background: var(--popup-bg); border: 1px solid var(--popup-border);
+    border-radius: 8px; padding: 4px 0; margin-top: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    z-index: 200; min-width: 140px;
+  }
+  .lang-picker.open .lang-dropdown { display: block; }
+  .lang-option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px; font-size: 14px; color: var(--ink);
+    text-decoration: none; cursor: pointer; transition: background 0.12s;
+    white-space: nowrap;
+  }
+  .lang-option:hover { background: var(--surface); }
+  .lang-option.active { font-weight: 600; color: var(--amber); }
+  .lang-option-flag { font-size: 18px; }
 
   .lang-switch { display: flex; gap: 0; }
   .lang-btn {
@@ -372,10 +397,18 @@
       <a href="#sources">Sources</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <a href="https://github.com/davidaparicio/ratearr">GitHub</a>
-      <a class="lang-toggle" id="lang-toggle" aria-label="Switch language">
-        <span class="lang-flag" data-lang="en">&#127468;&#127463;</span>
-        <span class="lang-flag" data-lang="fr" style="display:none">&#127467;&#127479;</span>
-      </a>
+      <div class="lang-picker" id="lang-picker">
+        <button class="lang-picker-btn" id="lang-picker-btn" aria-label="Select language" aria-expanded="false">
+          <span id="lang-current-flag"></span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="menu">
+          <a class="lang-option" data-lang="en" href="https://www.ratearr.com/" role="menuitem"><span class="lang-option-flag">&#127468;&#127463;</span> English</a>
+          <a class="lang-option" data-lang="fr" href="https://www.ratearr.fr/" role="menuitem"><span class="lang-option-flag">&#127467;&#127479;</span> Fran&ccedil;ais</a>
+          <a class="lang-option" data-lang="de" href="https://www.ratearr.com/?lang=de" role="menuitem"><span class="lang-option-flag">&#127465;&#127466;</span> Deutsch</a>
+          <a class="lang-option" data-lang="es" href="https://www.ratearr.com/?lang=es" role="menuitem"><span class="lang-option-flag">&#127466;&#127480;</span> Espa&ntilde;ol</a>
+          <a class="lang-option" data-lang="it" href="https://www.ratearr.com/?lang=it" role="menuitem"><span class="lang-option-flag">&#127470;&#127481;</span> Italiano</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -680,9 +713,13 @@ function setLang(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  document.querySelectorAll('.lang-flag').forEach(flag => {
-    flag.style.display = flag.dataset.lang === lang ? 'none' : 'inline';
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.lang === lang);
   });
+
+  const flagMap = { en: '\u{1F1EC}\u{1F1E7}', fr: '\u{1F1EB}\u{1F1F7}', de: '\u{1F1E9}\u{1F1EA}', es: '\u{1F1EA}\u{1F1F8}', it: '\u{1F1EE}\u{1F1F9}' };
+  const currentFlag = document.getElementById('lang-current-flag');
+  if (currentFlag) currentFlag.textContent = flagMap[lang] || flagMap.en;
 
   document.documentElement.lang = lang;
 
@@ -699,10 +736,18 @@ function setLang(lang) {
   }
 }
 
-const langToggle = document.getElementById('lang-toggle');
-if (langToggle) {
-  const otherLang = currentLang === 'fr' ? 'en' : 'fr';
-  langToggle.href = LANG_URLS[otherLang];
+const picker = document.getElementById('lang-picker');
+const pickerBtn = document.getElementById('lang-picker-btn');
+if (picker && pickerBtn) {
+  pickerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = picker.classList.toggle('open');
+    pickerBtn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', () => {
+    picker.classList.remove('open');
+    pickerBtn.setAttribute('aria-expanded', 'false');
+  });
 }
 
 setLang(currentLang);
